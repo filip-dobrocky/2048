@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=2048
+Exec=/usr/bin/qmlscene $@ /usr/share/2048/2048.qml
+Icon=qmlscene
+Terminal=false
+Type=Application
+X-Ubuntu-Touch=true

@@ -1,0 +1,15 @@
+{
+    "name": "com.ubuntu.developer.username.2048",
+    "description": "description of 2048",
+    "framework": "ubuntu-sdk-14.04-qml-dev1",
+    "architecture": "all",
+    "title": "2048",
+    "hooks": {
+        "2048": {
+            "apparmor": "2048.json",
+            "desktop": "2048.desktop"
+        }
+    },
+    "version": "0.1",
+    "maintainer": ""
+}
