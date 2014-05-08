@@ -1,9 +1,9 @@
 {
-    "name": "com.ubuntu.developer.username.2048",
-    "description": "description of 2048",
+    "name": "com.ubuntu.developer.filip-dobrocky.2048native",
+    "description": "Native 2048 clone",
     "framework": "ubuntu-sdk-14.04-qml-dev1",
     "architecture": "all",
-    "title": "2048",
+    "title": "2048Native",
     "hooks": {
         "2048": {
             "apparmor": "2048.json",
@@ -11,5 +11,5 @@
         }
     },
     "version": "0.1",
-    "maintainer": ""
+    "maintainer": "Filip Dobrocký <filip.dobrocky@gmail.com>"
 }
