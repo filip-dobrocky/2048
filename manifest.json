@@ -5,9 +5,9 @@
     "architecture": "all",
     "title": "2048Native",
     "hooks": {
-        "2048": {
-            "apparmor": "2048.json",
-            "desktop": "2048.desktop"
+        "2048Native": {
+            "apparmor": "2048Native.json",
+            "desktop": "2048Native.desktop"
         }
     },
     "version": "0.1",
