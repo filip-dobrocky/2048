@@ -44,8 +44,6 @@ Rectangle {
     signal victory
     signal defeat
 
-    StateSaver.properties: "savedNumbers, score, won"
-
     function numberAt(col, row) {
         for (var i = 0; i < numbers.length; i++) {
             if (numbers[i].col == col && numbers[i].row == row)

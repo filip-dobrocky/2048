@@ -186,6 +186,8 @@ MainView {
 
                 property int best: bestDoc.contents.best
 
+                StateSaver.properties: "savedNumbers, score, won, best"
+
                 onVictory: victoryTimer.start()
                 onDefeat: defeatTimer.start()
                 onScoreChanged: if (score > best) best = score
