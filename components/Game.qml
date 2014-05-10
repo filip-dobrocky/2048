@@ -34,6 +34,7 @@ Rectangle {
     radius: 4
 
     property variant numbers: []
+    property variant savedNumbers: saveNumbers()
     property int cols: 4
     property int rows: 4
     property int finalValue: 2048
@@ -42,6 +43,8 @@ Rectangle {
 
     signal victory
     signal defeat
+
+    StateSaver.properties: "savedNumbers, score, won"
 
     function numberAt(col, row) {
         for (var i = 0; i < numbers.length; i++) {
@@ -76,12 +79,21 @@ Rectangle {
         var tmp = numbers
         var newNumber
         for (var i = 0; i < dbNumbers.length; i++) {
-            newNumber = number.createObject(cellGrid,{"number": dbNumbers[i][0],"col":dbNumbers[i][1],"row":dbNumbers[i][2]})
+            newNumber = number.createObject(cellGrid,{"number": dbNumbers[i][0],"col": dbNumbers[i][1],"row": dbNumbers[i][2]})
             tmp.push(newNumber)
         }
         numbers = tmp
         score = gameDoc.contents.score
         won = gameDoc.contents.won
+    }
+    function loadSavedState() {
+        var tmp = numbers
+        var newNumber
+        for (var i = 0; i < savedNumbers.length; i++) {
+            newNumber = number.createObject(cellGrid,{"number": savedNumbers[i][0],"col": savedNumbers[i][1],"row": savedNumbers[i][2]})
+            tmp.push(newNumber)
+        }
+        numbers = tmp
     }
     function checkNotStuck() {
         for (var i = 0; i < app.cols; i++) {

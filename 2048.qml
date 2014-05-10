@@ -46,6 +46,16 @@ MainView {
 
     focus: true
 
+    property bool activeState: Qt.application.active
+
+    onActiveStateChanged: saveGame()
+    Component.onDestruction: saveGame()
+
+    function saveGame() {
+        gameDoc.contents = { 'numbers': game.saveNumbers(), 'score': game.score, 'won': game.won }
+        bestDoc.contents = { 'best': game.best }
+    }
+
     U1db.Database {
         id: db
         path: "2048native"
@@ -107,6 +117,7 @@ MainView {
         }
 
         Column {
+            id: gameColumn
             anchors.centerIn: parent
             spacing: units.gu(1)
 
@@ -175,20 +186,30 @@ MainView {
 
                 property int best: bestDoc.contents.best
 
-                onVictory: PopupUtils.open(victoryDialogComponent)
-                onDefeat: PopupUtils.open(defeatDialogComponent)
+                onVictory: victoryTimer.start()
+                onDefeat: defeatTimer.start()
                 onScoreChanged: if (score > best) best = score
 
                 Component.onCompleted: {
-                    //db.putDoc({'numbers': []}, 'numbers')
                     if (gameDoc.contents.numbers.length == 0 || gameDoc.contents == undefined) purge()
+                    else if (savedNumbers.length != 0) loadSavedState()
                     else load()
                 }
-                Component.onDestruction: {
-                    gameDoc.contents = { 'numbers': saveNumbers(), 'score': score, 'won': won }
-                    bestDoc.contents = { 'best': best }
-                }
             }
+        }
+
+        Timer {
+            id: victoryTimer
+            running: false
+            interval: 300
+            onTriggered: PopupUtils.open(victoryDialogComponent)
+        }
+
+        Timer {
+            id: defeatTimer
+            running: false
+            interval: 600
+            onTriggered: PopupUtils.open(defeatDialogComponent)
         }
 
         Component {
