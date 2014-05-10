@@ -20,7 +20,7 @@ import QtQuick 2.0
 import Ubuntu.Components 0.1
 
 Page {
-    property string version: "0.1"
+    property string version: "0.1.1"
 
     title: i18n.tr("About")
 
