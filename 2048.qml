@@ -46,6 +46,8 @@ MainView {
 
     focus: true
 
+    useDeprecatedToolbar: false
+
     property bool activeState: Qt.application.active
 
     onActiveStateChanged: saveGame()
@@ -97,225 +99,233 @@ MainView {
             title: "2048Native"
             visible: false
             tools: ToolbarItems {
+                //opened: true
                 ToolbarButton {
-                    text: i18n.tr("About")
-                    iconName: "help"
-                    onTriggered: pageStack.push(aboutPage)
+                    action: Action {
+                        text: i18n.tr("About")
+                        iconName: "help"
+                        onTriggered: pageStack.push(aboutPage)
+                    }
                 }
 
                 ToolbarButton {
-                    text: i18n.tr("Theme")
-                    iconName: (themeDoc.contents.theme == "Ambiance") ? "torch-on" : "torch-off"
-                    onTriggered: themeDoc.contents = (themeDoc.contents.theme == "Ambiance") ? { 'theme': "SuruDark" } : { 'theme': "Ambiance" }
+                    action: Action {
+                        text: i18n.tr("Theme")
+                        iconName: (themeDoc.contents.theme == "Ambiance") ? "torch-on" : "torch-off"
+                        onTriggered: themeDoc.contents =  { 'theme': ((themeDoc.contents.theme == "Ambiance") ? "SuruDark" : "Ambiance") }
+                    }
+
+                }
+
+                ToolbarButton {
+                    action: Action {
+                        text: i18n.tr("Restart")
+                        iconName: "reload"
+                        onTriggered: PopupUtils.open(restartDialogComponent)
+                    }
+                }
             }
 
-            ToolbarButton {
-                text: i18n.tr("Restart")
-                iconName: "reload"
-                onTriggered: PopupUtils.open(restartDialogComponent)
-            }
-        }
-
-        Column {
-            id: gameColumn
-            anchors.centerIn: parent
-            spacing: units.gu(1)
-
-            Row {
-                id: scores
-                width: game.width
-                height: units.gu(6)
+            Column {
+                id: gameColumn
+                anchors.centerIn: parent
                 spacing: units.gu(1)
 
-                UbuntuShape {
-                    width: (parent.width - units.gu(1)) / 2
-                    height: parent.height
-                    color: "#88888888"
+                Row {
+                    id: scores
+                    width: game.width
+                    height: units.gu(6)
+                    spacing: units.gu(1)
 
-                    Column {
-                        anchors.centerIn: parent
+                    UbuntuShape {
+                        width: (parent.width - units.gu(1)) / 2
+                        height: parent.height
+                        color: "#88888888"
 
-                        Label {
-                            id: scoreLabel
-                            text: i18n.tr("SCORE")
-                            fontSize: "small"
-                            horizontalAlignment: Text.AlignHCenter
-                            color: "white"
-                        }
+                        Column {
+                            anchors.centerIn: parent
 
-                        Label {
-                            width: scoreLabel.width
-                            text: "<b>" + game.score + "</b>"
-                            horizontalAlignment: Text.AlignHCenter
-                            color: "white"
-                        }
-                    }
-                }
+                            Label {
+                                id: scoreLabel
+                                text: i18n.tr("SCORE")
+                                fontSize: "small"
+                                horizontalAlignment: Text.AlignHCenter
+                                color: "white"
+                            }
 
-                UbuntuShape {
-                    width: (parent.width - units.gu(1)) / 2
-                    height: parent.height
-                    color: "#88888888"
-
-                    Column {
-                        anchors.centerIn: parent
-
-                        Label {
-                            id: bestLabel
-                            text: i18n.tr("BEST")
-                            fontSize: "small"
-                            horizontalAlignment: Text.AlignHCenter
-                            color: "white"
-                        }
-
-                        Label {
-                            width: bestLabel.width
-                            text: "<b>" + game.best + "</b>"
-                            horizontalAlignment: Text.AlignHCenter
-                            color: "white"
+                            Label {
+                                width: scoreLabel.width
+                                text: "<b>" + game.score + "</b>"
+                                horizontalAlignment: Text.AlignHCenter
+                                color: "white"
+                            }
                         }
                     }
+
+                    UbuntuShape {
+                        width: (parent.width - units.gu(1)) / 2
+                        height: parent.height
+                        color: "#88888888"
+
+                        Column {
+                            anchors.centerIn: parent
+
+                            Label {
+                                id: bestLabel
+                                text: i18n.tr("BEST")
+                                fontSize: "small"
+                                horizontalAlignment: Text.AlignHCenter
+                                color: "white"
+                            }
+
+                            Label {
+                                width: bestLabel.width
+                                text: "<b>" + game.best + "</b>"
+                                horizontalAlignment: Text.AlignHCenter
+                                color: "white"
+                            }
+                        }
+                    }
+                }
+
+                Game {
+                    id: game
+                    width: (gamePage.width - units.gu(4) < gamePage.height - scores.height - units.gu(5))
+                           ? gamePage.width - units.gu(4)
+                           : gamePage.height - scores.height - units.gu(5)
+
+                    property int best: bestDoc.contents.best
+
+                    StateSaver.properties: "savedNumbers, score, won, best"
+
+                    onVictory: victoryTimer.start()
+                    onDefeat: defeatTimer.start()
+                    onScoreChanged: if (score > best) best = score
+
+                    Component.onCompleted: {
+                        if (gameDoc.contents.numbers.length != 0 || gameDoc.contents != undefined) load()
+                        else if (savedNumbers.length != 0) loadSavedState()
+                        else purge()
+                    }
                 }
             }
 
-            Game {
-                id: game
-                width: (parent.parent.width < parent.parent.height)
-                       ? parent.parent.width - units.gu(4)
-                       : parent.parent.height - scores.height - units.gu(5)
+            Timer {
+                id: victoryTimer
+                running: false
+                interval: 300
+                onTriggered: PopupUtils.open(victoryDialogComponent)
+            }
 
-                property int best: bestDoc.contents.best
+            Timer {
+                id: defeatTimer
+                running: false
+                interval: 600
+                onTriggered: PopupUtils.open(defeatDialogComponent)
+            }
 
-                StateSaver.properties: "savedNumbers, score, won, best"
+            Component {
+                id: restartDialogComponent
 
-                onVictory: victoryTimer.start()
-                onDefeat: defeatTimer.start()
-                onScoreChanged: if (score > best) best = score
+                Dialog {
+                    id: restartDialog
+                    title: i18n.tr("Restart")
+                    text: i18n.tr("Are you sure you want to restart the game?")
 
-                Component.onCompleted: {
-                    if (gameDoc.contents.numbers.length == 0 || gameDoc.contents == undefined) purge()
-                    else if (savedNumbers.length != 0) loadSavedState()
-                    else load()
+                    Button {
+                        text: i18n.tr("Yes")
+                        onClicked: {
+                            game.purge()
+                            PopupUtils.close(restartDialog)
+                        }
+                    }
+
+                    Button {
+                        text: i18n.tr("No")
+                        color: UbuntuColors.warmGrey
+                        onClicked: {
+                            PopupUtils.close(restartDialog)
+                        }
+                    }
+
+                    Component.onCompleted: mainView.focus = false
+                    Component.onDestruction: mainView.focus = true
+                }
+            }
+
+            Component {
+                id: victoryDialogComponent
+
+                Dialog {
+                    id: victoryDialog
+                    title: i18n.tr("You win!")
+
+                    Button {
+                        text: i18n.tr("Keep going")
+                        onClicked: {
+                            PopupUtils.close(victoryDialog)
+                        }
+                    }
+
+                    Button {
+                        text: i18n.tr("Restart")
+                        color: UbuntuColors.warmGrey
+                        onClicked: {
+                            game.purge()
+                            PopupUtils.close(victoryDialog)
+                        }
+                    }
+
+                    Component.onCompleted: mainView.focus = false
+                    Component.onDestruction: mainView.focus = true
+                }
+            }
+
+            Component {
+                id: defeatDialogComponent
+
+                Dialog {
+                    id: defeatDialog
+                    title: i18n.tr("Game over.")
+                    text: i18n.tr("Score") + ": " + game.score
+
+                    Button {
+                        text: i18n.tr("Restart")
+                        onClicked: {
+                            game.purge()
+                            PopupUtils.close(defeatDialog)
+                        }
+                    }
+
+                    Button {
+                        text: i18n.tr("Quit game")
+                        color: UbuntuColors.warmGrey
+                        onClicked: {
+                            game.purge()
+                            Qt.quit()
+                        }
+                    }
+
+                    Component.onCompleted: mainView.focus = false
+                    Component.onDestruction: mainView.focus = true
                 }
             }
         }
 
-        Timer {
-            id: victoryTimer
-            running: false
-            interval: 300
-            onTriggered: PopupUtils.open(victoryDialogComponent)
-        }
-
-        Timer {
-            id: defeatTimer
-            running: false
-            interval: 600
-            onTriggered: PopupUtils.open(defeatDialogComponent)
-        }
-
-        Component {
-            id: restartDialogComponent
-
-            Dialog {
-                id: restartDialog
-                title: i18n.tr("Restart")
-                text: i18n.tr("Are you sure you want to restart the game?")
-
-                Button {
-                    text: i18n.tr("Yes")
-                    onClicked: {
-                        game.purge()
-                        PopupUtils.close(restartDialog)
-                    }
-                }
-
-                Button {
-                    text: i18n.tr("No")
-                    color: UbuntuColors.warmGrey
-                    onClicked: {
-                        PopupUtils.close(restartDialog)
-                    }
-                }
-
-                Component.onCompleted: mainView.focus = false
-                Component.onDestruction: mainView.focus = true
-            }
-        }
-
-        Component {
-            id: victoryDialogComponent
-
-            Dialog {
-                id: victoryDialog
-                title: i18n.tr("You win!")
-
-                Button {
-                    text: i18n.tr("Keep going")
-                    onClicked: {
-                        PopupUtils.close(victoryDialog)
-                    }
-                }
-
-                Button {
-                    text: i18n.tr("Restart")
-                    color: UbuntuColors.warmGrey
-                    onClicked: {
-                        game.purge()
-                        PopupUtils.close(victoryDialog)
-                    }
-                }
-
-                Component.onCompleted: mainView.focus = false
-                Component.onDestruction: mainView.focus = true
-            }
-        }
-
-        Component {
-            id: defeatDialogComponent
-
-            Dialog {
-                id: defeatDialog
-                title: i18n.tr("Game over.")
-                text: i18n.tr("Score") + ": " + game.score
-
-                Button {
-                    text: i18n.tr("Restart")
-                    onClicked: {
-                        game.purge()
-                        PopupUtils.close(defeatDialog)
-                    }
-                }
-
-                Button {
-                    text: i18n.tr("Quit game")
-                    color: UbuntuColors.warmGrey
-                    onClicked: {
-                        game.purge()
-                        Qt.quit()
-                    }
-                }
-
-                Component.onCompleted: mainView.focus = false
-                Component.onDestruction: mainView.focus = true
-            }
+        AboutPage {
+            id: aboutPage
+            visible: false
         }
     }
 
-    AboutPage {
-        id: aboutPage
-        visible: false
+    Keys.onPressed: {
+        if (event.key == Qt.Key_Left)
+            game.move(-1, 0)
+        if (event.key == Qt.Key_Right)
+            game.move(1, 0)
+        if (event.key == Qt.Key_Up)
+            game.move(0, -1)
+        if (event.key == Qt.Key_Down)
+            game.move(0, 1)
     }
-}
-
-Keys.onPressed: {
-    if (event.key == Qt.Key_Left)
-        game.move(-1, 0)
-    if (event.key == Qt.Key_Right)
-        game.move(1, 0)
-    if (event.key == Qt.Key_Up)
-        game.move(0, -1)
-    if (event.key == Qt.Key_Down)
-        game.move(0, 1)
-}
 }
