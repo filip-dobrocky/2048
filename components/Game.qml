@@ -54,7 +54,7 @@ Rectangle {
         var tmp = numbers
         for (var i = 0; i < tmp.length; i++) {
             if (tmp[i].col == col && tmp[i].row == row) {
-                tmp[i].timedDestruction()
+                tmp[i].disappear()
                 tmp.splice(i, 1)
             }
         }
@@ -149,10 +149,11 @@ Rectangle {
             height: cells.getAt(col, row).height
 
             Timer {
-                id: destroyTimer
+                id: newNumTimer
                 running: false
-                interval: 60
-                onTriggered: parent.destroy()
+                interval: 100
+                onTriggered: zoomIn.xScale = zoomIn.yScale = 1
+                onRunningChanged: if (running) zoomIn.xScale = zoomIn.yScale = 1.2
             }
 
             function move(h, v) {
@@ -166,14 +167,15 @@ Rectangle {
                         app.victory()
                     }
                     app.popNumberAt(h, v)
+                    newNumTimer.start()
                 }
                 col = h
                 row = v
                 return true
             }
 
-            function timedDestruction() {
-                destroyTimer.start()
+            function disappear() {
+                disappearAnimation.start()
             }
 
 
@@ -208,6 +210,14 @@ Rectangle {
                         type: Easing.InOutQuad
                     }
                 }
+            }
+
+            NumberAnimation on opacity {
+                id: disappearAnimation
+                duration: 80
+                running: false
+                to: 0
+                onStopped: colorRect.destroy()
             }
 
             transform: Scale {
@@ -281,8 +291,8 @@ Rectangle {
                 UbuntuShape {
                     width: parent.cellWidth
                     height: parent.cellHeight
-                    color: "#909090"
-                    opacity: 0.5
+                    color: "#F0F0F0"
+                    opacity: 0.3
 
                     property int col : index % app.cols
                     property int row : index / app.cols
