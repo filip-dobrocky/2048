@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=2048Native
-Exec=/usr/bin/qmlscene $@ /usr/share/2048/2048.qml
+Exec=qmlscene $@ ./2048.qml
 Icon=2048.png
 Terminal=false
 Type=Application

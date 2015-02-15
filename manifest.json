@@ -1,7 +1,7 @@
 {
     "name": "com.ubuntu.developer.filip-dobrocky.2048native",
     "description": "Native 2048 clone",
-    "framework": "ubuntu-sdk-14.04-qml-dev1",
+    "framework": "ubuntu-sdk-14.04-qml",
     "architecture": "all",
     "title": "2048Native",
     "hooks": {

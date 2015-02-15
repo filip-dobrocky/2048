@@ -24,7 +24,7 @@
 // you can buy me a beer in return.
 
 import QtQuick 2.0
-import Ubuntu.Components 0.1
+import Ubuntu.Components 1.0
 
 Rectangle {
     id: app
