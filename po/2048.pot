@@ -1,0 +1,93 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-13 21:23+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: AboutPage.qml:25 2048.qml:105
+msgid "About"
+msgstr ""
+
+#: AboutPage.qml:44
+msgid "2048Native"
+msgstr ""
+
+#: AboutPage.qml:64
+msgid "<b>Version:</b> "
+msgstr ""
+
+#: AboutPage.qml:75
+msgid ""
+"<b>Author:</b> Filip Dobrocký<br><b>Contact:</b> <a href=\"https://plus."
+"google.com/u/0/106056788722129106018/posts\">Filip Dobrocký (Google Plus)</"
+"a><br><b>License:</b> <a href=\"http://www.gnu.org/licenses/gpl.txt\">GNU "
+"GPL v3</a><br><b>Source code:</b> <a href=\"https://github.com/filip-"
+"dobrocky/2048\">GitHub</a><br><b>Bug tracker:</b> <a href=\"https://github."
+"com/filip-dobrocky/2048/issues\">GitHub</a>"
+msgstr ""
+
+#: AboutPage.qml:85
+msgid ""
+"<b>Copyright (C) 2014 Filip Dobrocký &lt;filip.dobrocky@gmail.com&gt;</b><br>"
+msgstr ""
+
+#: 2048.qml:113
+msgid "Theme"
+msgstr ""
+
+#: 2048.qml:122 2048.qml:232 2048.qml:271 2048.qml:293
+msgid "Restart"
+msgstr ""
+
+#: 2048.qml:150
+msgid "SCORE"
+msgstr ""
+
+#: 2048.qml:175
+msgid "BEST"
+msgstr ""
+
+#: 2048.qml:233
+msgid "Are you sure you want to restart the game?"
+msgstr ""
+
+#: 2048.qml:236
+msgid "Yes"
+msgstr ""
+
+#: 2048.qml:244
+msgid "No"
+msgstr ""
+
+#: 2048.qml:261
+msgid "You win!"
+msgstr ""
+
+#: 2048.qml:264
+msgid "Keep going"
+msgstr ""
+
+#: 2048.qml:289
+msgid "Game over."
+msgstr ""
+
+#: 2048.qml:290
+msgid "Score"
+msgstr ""
+
+#: 2048.qml:301
+msgid "Quit game"
+msgstr ""
