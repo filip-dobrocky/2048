@@ -41,7 +41,7 @@ Page {
             Label {
                 anchors.horizontalCenter: parent.horizontalCenter
 
-                text: "2048Native"
+                text: i18n.tr("2048Native")
                 fontSize: "large"
             }
 
@@ -61,10 +61,7 @@ Page {
                 linkColor: UbuntuColors.orange
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                text: "<b>Version:</b> " + version + "<br><br>
-<b>Swipe or use your arrow keys to move the tiles. When two tiles with the same number touch, they merge into one!</b><br><br>
-Based on <a href=\"http://gabrielecirulli.github.io/2048/\">2048</a> by <a href=\"http://gabrielecirulli.com/\">Gabriele Cirulli</a>.
-Code from <a href=\"https://github.com/MartinBriza/2048.qml\">2048.qml</a> by <a href=\"http://ma.rtinbriza.cz\">Martin Bříza</a> is used in this app.<br>"
+                text: i18n.tr("<b>Version:</b> ") + version + i18n("<br><br><b>Swipe or use your arrow keys to move the tiles. When two tiles with the same number touch, they merge into one!</b><br><br>Based on <a href=\"http://gabrielecirulli.github.io/2048/\">2048</a> by <a href=\"http://gabrielecirulli.com/\">Gabriele Cirulli</a>.Code from <a href=\"https://github.com/MartinBriza/2048.qml\">2048.qml</a> by <a href=\"http://ma.rtinbriza.cz\">Martin Bříza</a> is used in this app.<br>")
 
 
                 onLinkActivated: Qt.openUrlExternally(link)
@@ -75,11 +72,7 @@ Code from <a href=\"https://github.com/MartinBriza/2048.qml\">2048.qml</a> by <a
 
                 linkColor: UbuntuColors.orange
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                text: "<b>Author:</b> Filip Dobrocký<br>
-<b>Contact:</b> <a href=\"https://plus.google.com/u/0/106056788722129106018/posts\">Filip Dobrocký (Google Plus)</a><br>
-<b>License:</b> <a href=\"http://www.gnu.org/licenses/gpl.txt\">GNU GPL v3</a><br>
-<b>Source code:</b> <a href=\"https://github.com/filip-dobrocky/2048\">GitHub</a><br>
-<b>Bug tracker:</b> <a href=\"https://github.com/filip-dobrocky/2048/issues\">GitHub</a>"
+                text: i18n.tr("<b>Author:</b> Filip Dobrocký<br><b>Contact:</b> <a href=\"https://plus.google.com/u/0/106056788722129106018/posts\">Filip Dobrocký (Google Plus)</a><br><b>License:</b> <a href=\"http://www.gnu.org/licenses/gpl.txt\">GNU GPL v3</a><br><b>Source code:</b> <a href=\"https://github.com/filip-dobrocky/2048\">GitHub</a><br><b>Bug tracker:</b> <a href=\"https://github.com/filip-dobrocky/2048/issues\">GitHub</a>")
 
                 onLinkActivated: Qt.openUrlExternally(link)
             }
@@ -89,7 +82,7 @@ Code from <a href=\"https://github.com/MartinBriza/2048.qml\">2048.qml</a> by <a
 
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.Wrap
-                text: "<b>Copyright (C) 2014 Filip Dobrocký &lt;filip.dobrocky@gmail.com&gt;</b><br>"
+                text: i18n.tr("<b>Copyright (C) 2014 Filip Dobrocký &lt;filip.dobrocky@gmail.com&gt;</b><br>")
             }
         }
     }
