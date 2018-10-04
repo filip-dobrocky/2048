@@ -1,4 +1,4 @@
-# Portuguese translation for 2048
+﻿# Portuguese translation for 2048
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2048\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-04 13:49+0100\n"
-"PO-Revision-Date: 2017-10-04 13:49+0100\n"
+"POT-Creation-Date: 2018-10-04 13:49+0100\n"
+"PO-Revision-Date: 2018-10-04 13:49+0100\n"
 "Last-Translator: Rúben Silva <rubensilva945@gmail.com>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
 "Language: pt\n"
@@ -23,7 +23,7 @@ msgstr "Sobre"
 
 #: AboutPage.qml:44
 msgid "2048Native"
-msgstr "2048 Nativo"
+msgstr "2048Nativo"
 
 #: AboutPage.qml:64
 msgid "<b>Version:</b> "
@@ -65,7 +65,7 @@ msgstr "RESULTADO"
 
 #: 2048.qml:175
 msgid "BEST"
-msgstr "MELHOR RESULTADO"
+msgstr "MELHOR"
 
 #: 2048.qml:233
 msgid "Are you sure you want to restart the game?"
