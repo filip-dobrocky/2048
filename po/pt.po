@@ -1,0 +1,100 @@
+﻿# Portuguese translation for 2048
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 2048\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-10-04 13:49+0100\n"
+"PO-Revision-Date: 2018-10-04 13:49+0100\n"
+"Last-Translator: Rúben Silva <rubensilva945@gmail.com>\n"
+"Language-Team: Portuguese <pt@li.org>\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: AboutPage.qml:25 2048.qml:105
+msgid "About"
+msgstr "Sobre"
+
+#: AboutPage.qml:44
+msgid "2048Native"
+msgstr "2048Nativo"
+
+#: AboutPage.qml:64
+msgid "<b>Version:</b> "
+msgstr "<b>Versão:</b>"
+
+#: AboutPage.qml:75
+msgid ""
+"<b>Author:</b> Filip Dobrocký<br><b>Contact:</b> <a href=\"https://plus."
+"google.com/u/0/106056788722129106018/posts\">Filip Dobrocký (Google Plus)</"
+"a><br><b>License:</b> <a href=\"http://www.gnu.org/licenses/gpl.txt\">GNU "
+"GPL v3</a><br><b>Source code:</b> <a href=\"https://github.com/filip-"
+"dobrocky/2048\">GitHub</a><br><b>Bug tracker:</b> <a href=\"https://github."
+"com/filip-dobrocky/2048/issues\">GitHub</a>"
+msgstr ""
+"<b>Autor:</b> Filip Dobrocký<br><b>Contato:</b> <a href=\"https://plus."
+"google.com/u/0/106056788722129106018/posts\">Filip Dobrocký (Google Plus)</"
+"a><br><b>License:</b> <a href=\"http://www.gnu.org/licenses/gpl.txt\">GNU "
+"GPL v3</a><br><b>Código-Fonte:</b> <a href=\"https://github.com/filip-"
+"dobrocky/2048\">GitHub</a><br><b>Gestor de Erros:</b> <a href=\"https://github."
+"com/filip-dobrocky/2048/issues\">GitHub</a>"
+
+#: AboutPage.qml:85
+msgid ""
+"<b>Copyright (C) 2014 Filip Dobrocký &lt;filip.dobrocky@gmail.com&gt;</b><br>"
+msgstr ""
+"<b>Copyright (C) 2014 Filip Dobrocký &lt;filip.dobrocky@gmail.com&gt;</b><br>"
+
+#: 2048.qml:113
+msgid "Theme"
+msgstr "Tema"
+
+#: 2048.qml:122 2048.qml:232 2048.qml:271 2048.qml:293
+msgid "Restart"
+msgstr "Recomeçar"
+
+#: 2048.qml:150
+msgid "SCORE"
+msgstr "RESULTADO"
+
+#: 2048.qml:175
+msgid "BEST"
+msgstr "MELHOR"
+
+#: 2048.qml:233
+msgid "Are you sure you want to restart the game?"
+msgstr "Tem a certeza que deseja recomeçar o jogo?"
+
+#: 2048.qml:236
+msgid "Yes"
+msgstr "Sim"
+
+#: 2048.qml:244
+msgid "No"
+msgstr "Não"
+
+#: 2048.qml:261
+msgid "You win!"
+msgstr "Você ganhou!"
+
+#: 2048.qml:264
+msgid "Keep going"
+msgstr "Continue Tentando"
+
+#: 2048.qml:289
+msgid "Game over."
+msgstr "Perdeu."
+
+#: 2048.qml:290
+msgid "Score"
+msgstr "Resultado"
+
+#: 2048.qml:301
+msgid "Quit game"
+msgstr "Sair do jogo"
